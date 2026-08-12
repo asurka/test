@@ -1,0 +1,251 @@
+local module = {}
+
+module.plr = game.Players.LocalPlayer
+module.plr_gui = module.plr.PlayerGui
+
+module.__index = module
+
+
+function module:create_text(show_text,fill_to_left)
+	
+	local text = Instance.new('TextLabel')
+	text.BackgroundTransparency = 1
+	text.Font = Enum.Font.Michroma
+	text.TextSize = 16
+	text.Size = UDim2.fromScale(1,1)
+	text.Text = show_text
+	if fill_to_left then text.TextXAlignment = Enum.TextXAlignment.Left end
+	return text
+	
+	
+	
+end
+
+function module:create_button()
+	
+	local button = Instance.new('TextButton')
+	button.Size = UDim2.fromScale(0.5,0.1)
+	button.Text = 'Button'
+	button.Font = Enum.Font.Michroma
+	button.TextSize = 16
+	return button
+	
+	
+	
+end
+
+
+function module:create_toggle_button(option_index)
+	
+	local toggle_button = Instance.new('TextButton')
+	toggle_button.Size = UDim2.fromScale(0.2,1)
+	toggle_button.Position = UDim2.fromScale(0.8,0)
+	toggle_button.Text = 'OFF'
+	
+	toggle_button.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
+
+		self.options[option_index].enabled = not self.options[option_index].enabled
+		print('option enabled '..option_index)
+		if self.options[option_index].enabled then
+			toggle_button.Text = 'ON'
+		else
+			toggle_button.Text = 'OFF'
+		end
+
+
+	end)
+	return toggle_button 
+	
+		
+	
+	
+end
+
+
+function module:create_textBox()
+	
+	local txt_box = Instance.new('TextBox')
+	txt_box.Size = UDim2.fromScale(1,0.2)
+	txt_box.Position = UDim2.fromScale(0.2,0)
+	txt_box.PlaceholderText = '0'
+	txt_box.Text = ''
+	txt_box.TextScaled = true
+	txt_box.TextXAlignment = Enum.TextXAlignment.Left
+	txt_box.TouchTap:Connect(function(touchPositions: {any}) 
+		
+		txt_box:CaptureFocus()	
+		
+	end)
+	
+	return txt_box
+	
+	
+end
+
+function module:create_minimalize_button()
+	
+	local minimalize_button = Instance.new('TextButton')
+	minimalize_button.Size = UDim2.fromScale(0.1,1)
+	minimalize_button.Position = UDim2.fromScale(0.9,0)
+	minimalize_button.Text = '-'
+	minimalize_button.TextScaled = true
+	
+	local max_button = Instance.new('TextButton')
+	max_button.Parent = self.mainScreen
+	max_button.Size = UDim2.fromScale(0.05,0.05)
+	max_button.Position = UDim2.fromScale(0.1,0.1)
+	max_button.Text = '+'
+	max_button.Visible = false
+	max_button.TextScaled = true
+
+	max_button.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
+		
+		self.window.Visible = true
+		max_button.Visible = false
+		
+		
+	end)
+	minimalize_button.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
+		
+		self.window.Visible = false
+		max_button.Visible = true
+		
+	end)
+	
+
+	return minimalize_button
+end
+
+
+
+
+function module.new()
+	
+	local self = setmetatable({}, module)
+	
+	local mainScreen = Instance.new('ScreenGui')
+	mainScreen.Parent = module.plr_gui
+	mainScreen.Name = 'exploit'
+	mainScreen.ResetOnSpawn = false
+	self.access = false
+	self.options = {}
+	
+	self.mainScreen = mainScreen
+	
+	
+	
+	return self
+	
+end
+
+
+
+
+function module:create_window(topbar_text)
+	
+	local window = Instance.new('Frame')
+	window.Parent = self.mainScreen
+	window.Size = UDim2.fromScale(0.3,0.4)
+	window.Position = UDim2.fromScale(0.5,0.5)
+	window.Name = 'window'
+	self.window = window
+
+	local unllisted_folder = Instance.new('Folder')
+	unllisted_folder.Parent = window
+	unllisted_folder.Name = 'unlisted'
+	
+	local topBar = Instance.new('Frame')
+	topBar.Parent = unllisted_folder
+	topBar.Name = 'topBar'
+	topBar.Size = UDim2.fromScale(1.2,0.2)
+	topBar.Position = UDim2.fromScale(-0.1,-0.2)
+	local topBar_text = self:create_text(topbar_text or '')
+	topBar_text.Parent = topBar
+		
+	local minimalize_button = self:create_minimalize_button()
+	minimalize_button.Parent = topBar	
+
+	
+		
+	local list_layout = Instance.new('UIListLayout')	
+	list_layout.Parent = window
+	list_layout.Padding = UDim.new(0.05,0)
+	list_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	local dragDetector = Instance.new('UIDragDetector')
+	dragDetector.Parent = window
+	
+	
+	return window
+	
+end
+
+
+
+function module:create_login_window(key)
+	
+	local window = self:create_window('ASVRAHUB LOGIN')
+	
+	local key_input = self:create_textBox()::TextBox
+	key_input.Text = 'input key here'
+	key_input.PlaceholderText = 'input key here'
+	key_input.Parent = window
+	
+	local submit_button = self:create_button('submit')::TextButton
+	submit_button.Text = 'Accept key'
+	submit_button.Parent = window
+	submit_button.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
+		
+		if key_input.Text == key then
+			
+			window:Destroy()
+			self.window = nil
+			self.access = true
+			
+		end	
+		
+	end)
+	
+	local get_discord = self:create_button()
+	get_discord.Text = 'copy discord server'
+	get_discord.Parent = window
+	get_discord.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
+		
+		
+		
+	end)
+	
+	
+end
+function module:create_option_frame(option_text)
+	option_text = option_text or ''
+	local opt_db = {enabled = false}
+	table.insert(self.options,opt_db)
+	
+	local optionFrame = Instance.new('Frame')
+	if self.window then
+		
+		optionFrame.Parent = self.window
+		
+	end
+	
+	optionFrame.Size = UDim2.fromScale(1,0.1)
+	optionFrame.Position = UDim2.fromScale(0,0)
+	
+	local option_text = self:create_text(option_text,true)
+	option_text.Parent = optionFrame
+	local option_index = #self.options
+	local toggle_button = self:create_toggle_button(option_index)
+	toggle_button.Parent = optionFrame
+
+
+	
+	return option_index,optionFrame
+	
+end
+
+
+
+
+
+
+return module
