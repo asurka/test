@@ -228,7 +228,7 @@ function module:create_window(topbar_text)
 	uiShadow.Parent = topBar
 	
 	
-	
+	print(topbar_text)
 	local topBar_text:TextLabel = self:create_text(topbar_text or '')
 	topBar_text.Parent = topBar
 	topBar_text.TextSize = 32
