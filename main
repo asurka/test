@@ -228,7 +228,7 @@ function module:create_window(topbar_text)
 	uiShadow.Parent = topBar
 	
 	
-	print(topbar_text)
+	
 	local topBar_text:TextLabel = self:create_text(topbar_text or '')
 	topBar_text.Parent = topBar
 	topBar_text.TextSize = 32
@@ -250,9 +250,30 @@ function module:create_window(topbar_text)
 	
 end
 
-function module:create_category_list()
+function module:create_input_number()
 	
-		
+	
+	local txt_box = Instance.new('TextBox')
+	txt_box.Size = UDim2.fromScale(0.2,1)
+	txt_box.Position = UDim2.fromScale(0.5,0)
+	
+	txt_box.Text = ''
+	txt_box.TextScaled = true
+	txt_box.BackgroundTransparency = 0.5
+	txt_box.TextXAlignment = Enum.TextXAlignment.Center
+
+	txt_box.TouchTap:Connect(function(touchPositions: {any}) 
+
+		txt_box:CaptureFocus()	
+
+	end)
+	
+	txt_box:GetPropertyChangedSignal("Text"):Connect(function()
+		txt_box.Text = txt_box.Text:gsub("%D", "")
+	end)
+	
+	
+	return txt_box
 	
 end
 
@@ -285,22 +306,19 @@ function module:create_login_window(key)
 	get_discord.Text = 'copy discord server'
 	get_discord.Parent = window
 	get_discord.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
-	    get_discord.Text = 'copied discord to cliboard'
-	    setclipboard('https://discord.gg/57uw7CpHmm')
-	    task.wait(3)
-	    get_discord.Text = 'copy discord server'
+		get_discord.Text = 'copied discord to cliboard'
+		setclipboard('https://discord.gg/57uw7CpHmm')
+		task.wait(3)
+		get_discord.Text = 'copy discord server'
 
-    
+
 	end)
-
-		
-		
-	
 	
 end
-function module:create_option_frame(option_text)
+function module:create_option_frame(option_text,number_input)
 	option_text = option_text or ''
 
+	
 	
 	local optionFrame = Instance.new('Frame')
 	if self.window then
@@ -308,27 +326,34 @@ function module:create_option_frame(option_text)
 		optionFrame.Parent = self.window
 		
 	end
-	local opt_db = {enabled = false,option_obj = optionFrame}
 
-	table.insert(self.options,opt_db)
+
 	optionFrame.BackgroundTransparency = 1 
 	optionFrame.Size = UDim2.fromScale(1,0.2)
 	optionFrame.Position = UDim2.fromScale(0,0)
-	
 	local greenBorder = module.border_frame:Clone()
 	greenBorder.Parent = optionFrame	
 	
 	local option_text = self:create_text(option_text,true)
 	option_text.Parent = optionFrame
 	
+	
+	
+	
+	if number_input then
+		number_input = self:create_input_number()
+		number_input.Parent = optionFrame
+
+	end
+
+
+	local opt_db = {enabled = false,option_obj = optionFrame,number_input = number_input}
+	table.insert(self.options,opt_db)
 	local option_index = #self.options
 	
 	local toggle_button = self:create_toggle_button(option_index)
 	toggle_button.Parent = optionFrame
-	
 
-
-	
 	return option_index,optionFrame
 	
 end
