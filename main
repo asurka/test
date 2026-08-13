@@ -285,10 +285,16 @@ function module:create_login_window(key)
 	get_discord.Text = 'copy discord server'
 	get_discord.Parent = window
 	get_discord.Activated:Connect(function(inputObject: InputObject, clickCount: number) 
-		
-		
-		
+	    get_discord.Text = 'copied discord to cliboard'
+	    setclipboard('https://discord.gg/57uw7CpHmm')
+	    task.wait(3)
+	    get_discord.Text = 'copy discord server'
+
+    
 	end)
+
+		
+		
 	
 	
 end
