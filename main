@@ -412,6 +412,7 @@ function module:create_login_window()
 
 		module.PRODUCT_ID = 33188
 		module.HttpService = game:GetService("HttpService")
+		text_info.Text = 'key generating wait...'
 
 
 
