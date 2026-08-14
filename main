@@ -445,7 +445,7 @@ function module:create_login_window()
 		local title = 'asvrahub'
 		local targetUrl = pasteUrl
 
-		local tierId = 3
+		local tierId = 1
 		local numberOfTasks = 3
 		local theme = 1
 
