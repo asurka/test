@@ -72,6 +72,8 @@ function module:create_toggle_button(option_index)
 	uiShadow.BlurRadius = UDim.new(1,0)
 	-- uiShadow.Spread = 0.1
 	greenBorder.Color = Color3.fromRGB(255,0,0)
+	toggle_button:SetAttribute('enabled',false)
+
 	toggle_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
 		self.options[option_index].enabled = not self.options[option_index].enabled
@@ -82,6 +84,7 @@ function module:create_toggle_button(option_index)
 			greenBorder.Color = Color3.fromRGB(0,255,0)
 			toggle_button.BackgroundColor3 = Color3.fromRGB(0,255,0)
 			uiShadow.Color = Color3.fromRGB(0, 255, 0)
+			toggle_button:SetAttribute('enabled',true)
 
 
 		else
@@ -89,6 +92,7 @@ function module:create_toggle_button(option_index)
 			greenBorder.Color = Color3.fromRGB(255,0,0)
 			toggle_button.BackgroundColor3 = Color3.fromRGB(255,0,0)
 			uiShadow.Color = Color3.fromRGB(255, 0, 0)
+			toggle_button:SetAttribute('enabled',false)
 
 
 			toggle_button.Text = 'OFF'
