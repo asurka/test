@@ -12,7 +12,7 @@ module.KEYGEN_TOKEN = 'WyIxMjIzMDc1MjAiLCJlTXlUN2pTUzVhdGVJTUEySFZoeHk5ekIvbm5uN
 module.LOOT_API_KEY = 'da679066560738eb440e0f3008821bf1a3c459ac7dc685f575b369222e85c0ee'
 module.key_folder = isfolder('asvrahub') or makefolder('asvrahub')
 module.PRODUCT_ID = 33188
-
+module.attempts = 0
 module.__index = module
 
 
@@ -402,13 +402,18 @@ function module:create_login_window()
 	generate_key.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
 		-- api start
+		if self.attempts >= 3 then
+			
+			text_info.Text = 'too many attempts'
+			return
+		end
+		self.attempts += 1
 
 
 		module.PRODUCT_ID = 33188
 		module.HttpService = game:GetService("HttpService")
 
 
-		text_info.Text = 'link to key copied to clipboard'
 
 		local response = request({
 			Url = "https://api.cryptolens.io/api/key/CreateKey",
@@ -430,7 +435,7 @@ function module:create_login_window()
 		local key = data.key
 
 
-	--	print("Generated key:", key)
+		--	print("Generated key:", key)
 
 
 		local response = request({
@@ -487,6 +492,8 @@ function module:create_login_window()
 		--print("LOOTLABS:", lootUrl)
 
 		setclipboard(lootUrl)
+		text_info.Text = 'link to key copied to clipboard'
+
 
 	end)
 
@@ -541,11 +548,3 @@ end
 
 
 return module
-
-
-
-
-
-
-
-
