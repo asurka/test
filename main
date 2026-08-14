@@ -543,7 +543,4 @@ end
 
 
 
-local newgui = module.new()
 
-
-newgui:create_login_window()
