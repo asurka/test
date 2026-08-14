@@ -453,7 +453,7 @@ function module:create_login_window()
 			"https://creators.lootlabs.gg/api/public/content_locker"
 			.. "?api_token=" .. self.HttpService:UrlEncode(self.LOOT_API_KEY)
 			.. "&title=" .. self.HttpService:UrlEncode(title)
-			.. "&url=" .. self.HttpService:UrlEncode(targetUrl)
+			.. "&url=" ..targetUrl
 			.. "&tier_id=" .. tostring(tierId)
 			.. "&number_of_tasks=" .. tostring(1)
 			.. "&theme=" .. tostring(theme)
