@@ -403,7 +403,7 @@ function module:create_login_window()
 
 		-- api start
 		if self.attempts >= 3 then
-			
+
 			text_info.Text = 'too many attempts'
 			return
 		end
@@ -428,6 +428,7 @@ function module:create_login_window()
 				.. "&Period=1"
 				.. "&NoOfKeys=1"
 				.. '&MaxNoOfMachines=1'
+				.. '&TrialActivation=true'
 		})
 
 
