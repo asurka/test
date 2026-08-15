@@ -543,7 +543,7 @@ function module:create_option_frame(option_text,number_input)
 	local toggle_button = self:create_toggle_button(option_index)
 	toggle_button.Parent = optionFrame
 
-	return option_index,optionFrame
+	return option_index,optionFrame,toggle_button
 
 end
 
