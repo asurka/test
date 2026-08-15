@@ -11,7 +11,7 @@ module.HttpService = game:GetService("HttpService")
 module.KEYGEN_TOKEN = 'WyIxMjIzMDc1MjAiLCJlTXlUN2pTUzVhdGVJTUEySFZoeHk5ekIvbm5uNUNnQTI2V2RDdzN2Il0='
 module.LOOT_API_KEY = 'da679066560738eb440e0f3008821bf1a3c459ac7dc685f575b369222e85c0ee'
 module.key_folder = isfolder('asvrahub') or makefolder('asvrahub')
-module.PRODUCT_ID = 33188
+module.PRODUCT_ID = 33192
 module.attempts = 0
 module.__index = module
 
@@ -410,7 +410,7 @@ function module:create_login_window()
 		self.attempts += 1
 
 
-		module.PRODUCT_ID = 33188
+		module.PRODUCT_ID = 33192
 		module.HttpService = game:GetService("HttpService")
 		text_info.Text = 'key generating wait...'
 
