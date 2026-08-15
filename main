@@ -322,7 +322,7 @@ function module:create_login_window()
 		if data then
 			--print(response.Body)
 			if not data.licenseKey then
-				text_info.Text = 'invalid key'
+				text_info.Text = 'invalid key or expired'
 				return
 			end
 			for _, machine in ipairs(data.licenseKey.activatedMachines or {}) do
