@@ -459,7 +459,7 @@ local title = 'asvrahub'
 local targetUrl = pasteUrl
 local sessionUID = module.HttpService:GenerateGUID()
 local tierId = 3
-local numberOfTasks = 2
+local numberOfTasks = 4
 local theme = 1
 
 local requestUrl =
