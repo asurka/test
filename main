@@ -428,7 +428,7 @@ Headers = {
 Body =
 "token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
 .. "&ProductId=" .. tostring(self.PRODUCT_ID)
-.. "&Period=1"
+.. "&Period=3"
 .. "&NoOfKeys=1"
 .. '&MaxNoOfMachines=1'
 })
@@ -458,8 +458,8 @@ local pasteUrl = self.HttpService:JSONDecode(response.Body).url
 local title = 'asvrahub'
 local targetUrl = pasteUrl
 local sessionUID = module.HttpService:GenerateGUID()
-local tierId = 1
-local numberOfTasks = 3
+local tierId = 3
+local numberOfTasks = 2
 local theme = 1
 
 local requestUrl =
