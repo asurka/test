@@ -137,7 +137,7 @@ minimalize_button.Size = UDim2.fromScale(0.1,1)
 minimalize_button.Position = UDim2.fromScale(1,0)
 minimalize_button.Text = '-'
 minimalize_button.TextScaled = true
-minimalize_button.BackgroundTransparency = 1
+minimalize_button.BackgroundTransparency = 0.7
 minimalize_button.TextColor3 = Color3.fromRGB(0,255,0)
 
 local greenBorder = module.border_frame:Clone()
