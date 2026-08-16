@@ -344,20 +344,22 @@ end
 
 
 local response = request({
-Url = "https://api.cryptolens.io/api/key/Activate",
-Method = "POST",
-Headers = {
-["Content-Type"] = "application/x-www-form-urlencoded"
-},
-
-Body =
-"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
-.. "&ProductId=" .. tostring(self.PRODUCT_ID)
-.. '&Sign=1'
-.. "&MachineCode="..machineCode
-.. "&Key="..key
+Url = 'https://pknvenbnlmraogpnwggn.supabase.co/functions/v1/activateKey'
+.. "?machineCode="..machineCode
+.. "&key="..key,
+Method = "GET"
 })
 
+local data = module.HttpService:JSONDecode(response.Body)
+
+if data then
+
+
+  if response.Success == false then
+  text_info.Text = data.error
+
+  return end
+end
 text_info.Text = 'key activated'
 writefile('asvrahub/key.txt',key)
 
@@ -429,7 +431,6 @@ Body =
 .. "&Period=1"
 .. "&NoOfKeys=1"
 .. '&MaxNoOfMachines=1'
-.. '&TrialActivation=true'
 })
 
 
@@ -496,7 +497,7 @@ local lootUrl = data.message[1].loot_url
 --print("LOOTLABS:", lootUrl)
 local requestUrl =
 'https://pknvenbnlmraogpnwggn.supabase.co/functions/v1/savelink'
-.. '?&click_id=' .. sessionUID
+.. '?&click_id=' .. key
 local response = request({
 Url = requestUrl,
 Method = "GET"
@@ -505,7 +506,7 @@ if not response.Success then
 return
 end
 
-setclipboard(lootUrl..'&puid='..sessionUID)
+setclipboard(lootUrl..'&puid='..key)
 text_info.Text = 'link to key copied to clipboard'
 
 
