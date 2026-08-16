@@ -18,16 +18,16 @@ module.__index = module
 
 function module:create_text(show_text,fill_to_left)
 
-	local text = Instance.new('TextLabel')
-	text.BackgroundTransparency = 1
-	text.Font = Enum.Font.Michroma
-	text.TextSize = 16
-	text.Size = UDim2.fromScale(1,1)
-	text.Text = show_text
-	text.TextColor3 = Color3.fromRGB(0, 255, 0)
+local text = Instance.new('TextLabel')
+text.BackgroundTransparency = 1
+text.Font = Enum.Font.Michroma
+text.TextSize = 16
+text.Size = UDim2.fromScale(1,1)
+text.Text = show_text
+text.TextColor3 = Color3.fromRGB(0, 255, 0)
 
-	if fill_to_left then text.TextXAlignment = Enum.TextXAlignment.Left end
-	return text
+if fill_to_left then text.TextXAlignment = Enum.TextXAlignment.Left end
+return text
 
 
 
@@ -35,17 +35,17 @@ end
 
 function module:create_button()
 
-	local button = Instance.new('TextButton')
-	button.Size = UDim2.fromScale(0.5,0.1)
-	button.Text = 'Button'
-	button.Font = Enum.Font.Michroma
-	button.TextSize = 16
-	button.TextColor3 = Color3.fromRGB(0, 255, 0)
-	button.BackgroundTransparency = 1
-	local greenBorder = module.border_frame:Clone()
-	greenBorder.Parent = button
-	greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	return button
+local button = Instance.new('TextButton')
+button.Size = UDim2.fromScale(0.5,0.1)
+button.Text = 'Button'
+button.Font = Enum.Font.Michroma
+button.TextSize = 16
+button.TextColor3 = Color3.fromRGB(0, 255, 0)
+button.BackgroundTransparency = 1
+local greenBorder = module.border_frame:Clone()
+greenBorder.Parent = button
+greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+return button
 
 
 
@@ -54,53 +54,53 @@ end
 
 function module:create_toggle_button(option_index)
 
-	local toggle_button = Instance.new('TextButton')
-	toggle_button.Size = UDim2.fromScale(0.2,0.8)
-	toggle_button.Position = UDim2.fromScale(0.78,0.1)
-	toggle_button.Text = 'OFF'
-	toggle_button.TextColor3 = Color3.fromRGB(255,0,0)
-	toggle_button.BackgroundTransparency = 0.8
-	toggle_button.BackgroundColor3 = Color3.fromRGB(255,0,0)
-	local greenBorder = module.border_frame:Clone()
-	greenBorder.Parent = toggle_button
-	greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	local uiShadow = Instance.new('UIShadow')
-	uiShadow.Parent = toggle_button
-	uiShadow.Color = Color3.fromRGB(255, 0, 0)
-	uiShadow.Offset = UDim2.fromScale(0.5,0)
-	uiShadow.Transparency = 0.5
-	uiShadow.BlurRadius = UDim.new(1,0)
-	-- uiShadow.Spread = 0.1
-	greenBorder.Color = Color3.fromRGB(255,0,0)
-	toggle_button:SetAttribute('enabled',false)
+local toggle_button = Instance.new('TextButton')
+toggle_button.Size = UDim2.fromScale(0.2,0.8)
+toggle_button.Position = UDim2.fromScale(0.78,0.1)
+toggle_button.Text = 'OFF'
+toggle_button.TextColor3 = Color3.fromRGB(255,0,0)
+toggle_button.BackgroundTransparency = 0.8
+toggle_button.BackgroundColor3 = Color3.fromRGB(255,0,0)
+local greenBorder = module.border_frame:Clone()
+greenBorder.Parent = toggle_button
+greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local uiShadow = Instance.new('UIShadow')
+uiShadow.Parent = toggle_button
+uiShadow.Color = Color3.fromRGB(255, 0, 0)
+uiShadow.Offset = UDim2.fromScale(0.5,0)
+uiShadow.Transparency = 0.5
+uiShadow.BlurRadius = UDim.new(1,0)
+-- uiShadow.Spread = 0.1
+greenBorder.Color = Color3.fromRGB(255,0,0)
+toggle_button:SetAttribute('enabled',false)
 
-	toggle_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+toggle_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
-		self.options[option_index].enabled = not self.options[option_index].enabled
-		print('option enabled '..option_index)
-		if self.options[option_index].enabled then
-			toggle_button.Text = 'ON'
-			toggle_button.TextColor3 = Color3.fromRGB(0,255,0)
-			greenBorder.Color = Color3.fromRGB(0,255,0)
-			toggle_button.BackgroundColor3 = Color3.fromRGB(0,255,0)
-			uiShadow.Color = Color3.fromRGB(0, 255, 0)
-			toggle_button:SetAttribute('enabled',true)
-
-
-		else
-			toggle_button.TextColor3 = Color3.fromRGB(255,0,0)
-			greenBorder.Color = Color3.fromRGB(255,0,0)
-			toggle_button.BackgroundColor3 = Color3.fromRGB(255,0,0)
-			uiShadow.Color = Color3.fromRGB(255, 0, 0)
-			toggle_button:SetAttribute('enabled',false)
+self.options[option_index].enabled = not self.options[option_index].enabled
+print('option enabled '..option_index)
+if self.options[option_index].enabled then
+toggle_button.Text = 'ON'
+toggle_button.TextColor3 = Color3.fromRGB(0,255,0)
+greenBorder.Color = Color3.fromRGB(0,255,0)
+toggle_button.BackgroundColor3 = Color3.fromRGB(0,255,0)
+uiShadow.Color = Color3.fromRGB(0, 255, 0)
+toggle_button:SetAttribute('enabled',true)
 
 
-			toggle_button.Text = 'OFF'
-		end
+else
+toggle_button.TextColor3 = Color3.fromRGB(255,0,0)
+greenBorder.Color = Color3.fromRGB(255,0,0)
+toggle_button.BackgroundColor3 = Color3.fromRGB(255,0,0)
+uiShadow.Color = Color3.fromRGB(255, 0, 0)
+toggle_button:SetAttribute('enabled',false)
 
 
-	end)
-	return toggle_button
+toggle_button.Text = 'OFF'
+end
+
+
+end)
+return toggle_button
 
 
 
@@ -110,70 +110,70 @@ end
 
 function module:create_textBox()
 
-	local txt_box = Instance.new('TextBox')
-	txt_box.Size = UDim2.fromScale(1,0.2)
-	txt_box.Position = UDim2.fromScale(0.2,0)
-	txt_box.PlaceholderText = '0'
-	txt_box.Text = ''
-	txt_box.TextScaled = true
-	txt_box.BackgroundTransparency = 0.5
-	txt_box.TextXAlignment = Enum.TextXAlignment.Center
+local txt_box = Instance.new('TextBox')
+txt_box.Size = UDim2.fromScale(1,0.2)
+txt_box.Position = UDim2.fromScale(0.2,0)
+txt_box.PlaceholderText = '0'
+txt_box.Text = ''
+txt_box.TextScaled = true
+txt_box.BackgroundTransparency = 0.5
+txt_box.TextXAlignment = Enum.TextXAlignment.Center
 
-	txt_box.TouchTap:Connect(function(touchPositions: {any})
+txt_box.TouchTap:Connect(function(touchPositions: {any})
 
-		txt_box:CaptureFocus()
+txt_box:CaptureFocus()
 
-	end)
+end)
 
-	return txt_box
+return txt_box
 
 
 end
 
 function module:create_minimalize_button()
 
-	local minimalize_button = Instance.new('TextButton')
-	minimalize_button.Size = UDim2.fromScale(0.1,1)
-	minimalize_button.Position = UDim2.fromScale(0.9,0)
-	minimalize_button.Text = '-'
-	minimalize_button.TextScaled = true
-	minimalize_button.BackgroundTransparency = 1
-	minimalize_button.TextColor3 = Color3.fromRGB(0,255,0)
+local minimalize_button = Instance.new('TextButton')
+minimalize_button.Size = UDim2.fromScale(0.1,1)
+minimalize_button.Position = UDim2.fromScale(0.9,0)
+minimalize_button.Text = '-'
+minimalize_button.TextScaled = true
+minimalize_button.BackgroundTransparency = 1
+minimalize_button.TextColor3 = Color3.fromRGB(0,255,0)
 
-	local greenBorder = module.border_frame:Clone()
-	greenBorder.Parent = minimalize_button
-	greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local greenBorder = module.border_frame:Clone()
+greenBorder.Parent = minimalize_button
+greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-	local max_button = Instance.new('TextButton')
-	max_button.Parent = self.mainScreen
-	max_button.Size = UDim2.fromScale(0.05,0.05)
-	max_button.Position = UDim2.fromScale(0.1,0.1)
-	max_button.Text = '+'
-	max_button.Visible = false
-	max_button.TextScaled = true
-	max_button.TextColor3 = Color3.fromRGB(0,255,0)
-	max_button.BackgroundTransparency = 0.5
+local max_button = Instance.new('TextButton')
+max_button.Parent = self.mainScreen
+max_button.Size = UDim2.fromScale(0.05,0.05)
+max_button.Position = UDim2.fromScale(0.1,0.1)
+max_button.Text = '+'
+max_button.Visible = false
+max_button.TextScaled = true
+max_button.TextColor3 = Color3.fromRGB(0,255,0)
+max_button.BackgroundTransparency = 0.5
 
-	local greenBorder = module.border_frame:Clone()
-	greenBorder.Parent = max_button
-	greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+local greenBorder = module.border_frame:Clone()
+greenBorder.Parent = max_button
+greenBorder.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-	max_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+max_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
-		self.window.Visible = true
-		max_button.Visible = false
-
-
-	end)
-	minimalize_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
-
-		self.window.Visible = false
-		max_button.Visible = true
-
-	end)
+self.window.Visible = true
+max_button.Visible = false
 
 
-	return minimalize_button
+end)
+minimalize_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+
+self.window.Visible = false
+max_button.Visible = true
+
+end)
+
+
+return minimalize_button
 end
 
 
@@ -181,20 +181,20 @@ end
 
 function module.new()
 
-	local self = setmetatable({}, module)
+local self = setmetatable({}, module)
 
-	local mainScreen = Instance.new('ScreenGui')
-	mainScreen.Parent = module.plr_gui
-	mainScreen.Name = 'exploit'
-	mainScreen.ResetOnSpawn = false
-	self.access = false
-	self.options = {}
+local mainScreen = Instance.new('ScreenGui')
+mainScreen.Parent = module.plr_gui
+mainScreen.Name = 'exploit'
+mainScreen.ResetOnSpawn = false
+self.access = false
+self.options = {}
 
-	self.mainScreen = mainScreen
+self.mainScreen = mainScreen
 
 
 
-	return self
+return self
 
 end
 
@@ -203,350 +203,361 @@ end
 
 function module:create_window(topbar_text)
 
-	local window = Instance.new('Frame')
-	window.Parent = self.mainScreen
-	window.Size = UDim2.fromScale(0.3,0.4)
-	window.Position = UDim2.fromScale(0.5,0.5)
-	window.BorderSizePixel = 1
-	window.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	window.BorderColor3 = Color3.fromRGB(0, 255, 0)
-	window.Name = 'window'
-	local uiShadow = Instance.new('UIShadow')
-	uiShadow.BlurRadius = UDim.new(0.1,0)
-	uiShadow.Color = Color3.fromRGB(0, 255, 0)
-	uiShadow.Parent = window
+local window = Instance.new('Frame')
+window.Parent = self.mainScreen
+window.Size = UDim2.fromScale(0.3,0.4)
+window.Position = UDim2.fromScale(0.5,0.5)
+window.BorderSizePixel = 1
+window.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+window.BorderColor3 = Color3.fromRGB(0, 255, 0)
+window.Name = 'window'
+local uiShadow = Instance.new('UIShadow')
+uiShadow.BlurRadius = UDim.new(0.1,0)
+uiShadow.Color = Color3.fromRGB(0, 255, 0)
+uiShadow.Parent = window
 
-	self.window = window
+self.window = window
 
-	local unllisted_folder = Instance.new('Folder')
-	unllisted_folder.Parent = window
-	unllisted_folder.Name = 'unlisted'
+local unllisted_folder = Instance.new('Folder')
+unllisted_folder.Parent = window
+unllisted_folder.Name = 'unlisted'
 
-	local topBar = Instance.new('Frame')
-	topBar.BorderSizePixel = 1
-	topBar.BorderColor3 = Color3.fromRGB(0, 255, 0)
+local topBar = Instance.new('Frame')
+topBar.BorderSizePixel = 1
+topBar.BorderColor3 = Color3.fromRGB(0, 255, 0)
 
-	topBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	topBar.Parent = unllisted_folder
-	topBar.Name = 'topBar'
-	topBar.Size = UDim2.fromScale(1.2,0.2)
-	topBar.Position = UDim2.fromScale(-0.1,-0.2)
-	local uiShadow = Instance.new('UIShadow')
-	uiShadow.BlurRadius = UDim.new(0.31,0)
-	uiShadow.Color = Color3.fromRGB(0, 255, 0)
-	uiShadow.Parent = topBar
-
-
-
-	local topBar_text:TextLabel = self:create_text(topbar_text or '')
-	topBar_text.Parent = topBar
-	topBar_text.TextSize = 32
-
-	local minimalize_button = self:create_minimalize_button()
-	minimalize_button.Parent = topBar
+topBar.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+topBar.Parent = unllisted_folder
+topBar.Name = 'topBar'
+topBar.Size = UDim2.fromScale(1.2,0.2)
+topBar.Position = UDim2.fromScale(-0.1,-0.2)
+local uiShadow = Instance.new('UIShadow')
+uiShadow.BlurRadius = UDim.new(0.31,0)
+uiShadow.Color = Color3.fromRGB(0, 255, 0)
+uiShadow.Parent = topBar
 
 
 
-	local list_layout = Instance.new('UIListLayout')
-	list_layout.Parent = window
-	list_layout.Padding = UDim.new(0.01,0)
-	list_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	local dragDetector = Instance.new('UIDragDetector')
-	dragDetector.Parent = window
+local topBar_text:TextLabel = self:create_text(topbar_text or '')
+topBar_text.Parent = topBar
+topBar_text.TextSize = 32
+
+local minimalize_button = self:create_minimalize_button()
+minimalize_button.Parent = topBar
 
 
-	return window
+
+local list_layout = Instance.new('UIListLayout')
+list_layout.Parent = window
+list_layout.Padding = UDim.new(0.01,0)
+list_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+local dragDetector = Instance.new('UIDragDetector')
+dragDetector.Parent = window
+
+
+return window
 
 end
 
 function module:create_input_number()
 
 
-	local txt_box = Instance.new('TextBox')
-	txt_box.Size = UDim2.fromScale(0.2,1)
-	txt_box.Position = UDim2.fromScale(0.5,0)
+local txt_box = Instance.new('TextBox')
+txt_box.Size = UDim2.fromScale(0.2,1)
+txt_box.Position = UDim2.fromScale(0.5,0)
 
-	txt_box.Text = ''
-	txt_box.TextScaled = true
-	txt_box.BackgroundTransparency = 0.5
-	txt_box.TextXAlignment = Enum.TextXAlignment.Center
+txt_box.Text = ''
+txt_box.TextScaled = true
+txt_box.BackgroundTransparency = 0.5
+txt_box.TextXAlignment = Enum.TextXAlignment.Center
 
-	txt_box.TouchTap:Connect(function(touchPositions: {any})
+txt_box.TouchTap:Connect(function(touchPositions: {any})
 
-		txt_box:CaptureFocus()
+txt_box:CaptureFocus()
 
-	end)
+end)
 
-	txt_box:GetPropertyChangedSignal("Text"):Connect(function()
-		txt_box.Text = txt_box.Text:gsub("%D", "")
-	end)
+txt_box:GetPropertyChangedSignal("Text"):Connect(function()
+txt_box.Text = txt_box.Text:gsub("%D", "")
+end)
 
 
-	return txt_box
+return txt_box
 
 end
 
 
 function module:create_login_window()
 
-	local window = self:create_window('ASVRAHUB LOGIN')
-	local text_info = self:create_text('input key to get access')
+local window = self:create_window('ASVRAHUB LOGIN')
+local text_info = self:create_text('input key to get access')
 
-	local key_input = self:create_textBox()::TextBox
-	key_input.Text = if isfile('asvrahub/key.txt') then readfile('asvrahub/key.txt') else 'input key here'
-	key_input.PlaceholderText = 'input key here'
-	key_input.Parent = window
+local key_input = self:create_textBox()::TextBox
+key_input.Text = if isfile('asvrahub/key.txt') then readfile('asvrahub/key.txt') else 'input key here'
+key_input.PlaceholderText = 'input key here'
+key_input.Parent = window
 
-	local submit_button = self:create_button('submit')::TextButton
-	submit_button.Text = 'Accept key'
-	submit_button.Parent = window
-	submit_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
-		local machineCode = gethwid()
-		local key = key_input.Text
+local submit_button = self:create_button('submit')::TextButton
+submit_button.Text = 'Accept key'
+submit_button.Parent = window
+submit_button.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+local machineCode = gethwid()
+local key = key_input.Text
 
-		-- api accept
-		local response = request({
-			Url = "https://api.cryptolens.io/api/key/GetKey",
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/x-www-form-urlencoded"
-			},
-			Body =
-				"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN) ..
-				"&ProductId=" .. self.PRODUCT_ID ..
-				"&Key=" .. self.HttpService:UrlEncode(key)
-		})
+-- api accept
+local response = request({
+Url = "https://api.cryptolens.io/api/key/GetKey",
+Method = "POST",
+Headers = {
+["Content-Type"] = "application/x-www-form-urlencoded"
+},
+Body =
+"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN) ..
+"&ProductId=" .. self.PRODUCT_ID ..
+"&Key=" .. self.HttpService:UrlEncode(key)
+})
 
-		local data = self.HttpService:JSONDecode(response.Body)
+local data = self.HttpService:JSONDecode(response.Body)
 
-		if data then
-			--print(response.Body)
-			if not data.licenseKey then
-				text_info.Text = 'invalid key or expired'
-				return
-			end
-			for _, machine in ipairs(data.licenseKey.activatedMachines or {}) do
-				if tostring(machine.mid) == machineCode then
-					writefile('asvrahub/key.txt',key)
-					window:Destroy()
-					self.window = nil
-					self.access = true
+if data then
+--print(response.Body)
+if not data.licenseKey then
+text_info.Text = 'invalid key or expired'
+return
+end
+for _, machine in ipairs(data.licenseKey.activatedMachines or {}) do
+if tostring(machine.mid) == machineCode then
+writefile('asvrahub/key.txt',key)
+window:Destroy()
+self.window = nil
+self.access = true
 
-					return true
-				end
-			end
-		end
+return true
+end
+end
+end
 
-		if #data.licenseKey.activatedMachines == 1 then
-			text_info.Text = 'key is used'
-			return
-		end
+if #data.licenseKey.activatedMachines == 1 then
+text_info.Text = 'key is used'
+return
+end
 
 
-		local response = request({
-			Url = "https://api.cryptolens.io/api/key/Activate",
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/x-www-form-urlencoded"
-			},
+local response = request({
+Url = "https://api.cryptolens.io/api/key/Activate",
+Method = "POST",
+Headers = {
+["Content-Type"] = "application/x-www-form-urlencoded"
+},
 
-			Body =
-				"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
-				.. "&ProductId=" .. tostring(self.PRODUCT_ID)
-				.. '&Sign=1'
-				.. "&MachineCode="..machineCode
-				.. "&Key="..key
-		})
+Body =
+"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
+.. "&ProductId=" .. tostring(self.PRODUCT_ID)
+.. '&Sign=1'
+.. "&MachineCode="..machineCode
+.. "&Key="..key
+})
 
-		text_info.Text = 'key activated'
-		writefile('asvrahub/key.txt',key)
+text_info.Text = 'key activated'
+writefile('asvrahub/key.txt',key)
 
-		task.wait(1)
+task.wait(1)
 
-		window:Destroy()
-		self.window = nil
-		self.access = true
+window:Destroy()
+self.window = nil
+self.access = true
 
-		return false
+return false
 
 
 
 
 
-	end)
+end)
 
-	local get_discord = self:create_button()
-	get_discord.Text = 'copy discord server'
-	get_discord.Parent = window
-	get_discord.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+local get_discord = self:create_button()
+get_discord.Text = 'copy discord server'
+get_discord.Parent = window
+get_discord.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
 
 
-		get_discord.Text = 'copied discord to cliboard'
-		setclipboard('https://discord.gg/57uw7CpHmm')
-		task.wait(3)
-		get_discord.Text = 'copy discord server'
+get_discord.Text = 'copied discord to cliboard'
+setclipboard('https://discord.gg/57uw7CpHmm')
+task.wait(3)
+get_discord.Text = 'copy discord server'
 
 
-	end)
+end)
 
-	local generate_key = self:create_button()
+local generate_key = self:create_button()
 
 
 
-	generate_key.Text = 'generate key'
-	generate_key.Parent = window
+generate_key.Text = 'generate key'
+generate_key.Parent = window
 
 
 
-	generate_key.Activated:Connect(function(inputObject: InputObject, clickCount: number)
+generate_key.Activated:Connect(function(inputObject: InputObject, clickCount: number)
 
-		-- api start
-		if self.attempts >= 3 then
+-- api start
+if self.attempts >= 3 then
 
-			text_info.Text = 'too many attempts'
-			return
-		end
-		self.attempts += 1
+text_info.Text = 'too many attempts'
+return
+end
+self.attempts += 1
 
 
-		module.PRODUCT_ID = 33192
-		module.HttpService = game:GetService("HttpService")
-		text_info.Text = 'key generating wait...'
+module.PRODUCT_ID = 33192
 
+module.HttpService = game:GetService("HttpService")
+text_info.Text = 'key generating wait...'
 
 
-		local response = request({
-			Url = "https://api.cryptolens.io/api/key/CreateKey",
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/x-www-form-urlencoded"
-			},
-			Body =
-				"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
-				.. "&ProductId=" .. tostring(self.PRODUCT_ID)
-				.. "&Period=1"
-				.. "&NoOfKeys=1"
-				.. '&MaxNoOfMachines=1'
-				.. '&TrialActivation=true'
-		})
 
+local response = request({
+Url = "https://api.cryptolens.io/api/key/CreateKey",
+Method = "POST",
+Headers = {
+["Content-Type"] = "application/x-www-form-urlencoded"
+},
+Body =
+"token=" .. self.HttpService:UrlEncode(self.KEYGEN_TOKEN)
+.. "&ProductId=" .. tostring(self.PRODUCT_ID)
+.. "&Period=1"
+.. "&NoOfKeys=1"
+.. '&MaxNoOfMachines=1'
+.. '&TrialActivation=true'
+})
 
 
-		local data = self.HttpService:JSONDecode(response.Body)
-		local key = data.key
 
+local data = self.HttpService:JSONDecode(response.Body)
+local key = data.key
 
-		--	print("Generated key:", key)
 
+-- print("Generated key:", key)
 
-		local response = request({
-			Url = "https://rentry.co/api/new",
-			Method = "POST",
-			Headers = {
-				["Content-Type"] = "application/x-www-form-urlencoded"
-			},
-			Body = "text=" .. game:GetService("HttpService"):UrlEncode(key)
-		})
 
+local response = request({
+Url = "https://rentry.co/api/new",
+Method = "POST",
+Headers = {
+["Content-Type"] = "application/x-www-form-urlencoded"
+},
+Body = "text=" .. game:GetService("HttpService"):UrlEncode(key)
+})
 
-		local pasteUrl = self.HttpService:JSONDecode(response.Body).url
 
+local pasteUrl = self.HttpService:JSONDecode(response.Body).url
 
-		local title = 'asvrahub'
-		local targetUrl = pasteUrl
 
-		local tierId = 1
-		local numberOfTasks = 3
-		local theme = 1
+local title = 'asvrahub'
+local targetUrl = pasteUrl
+local sessionUID = module.HttpService:GenerateGUID()
+local tierId = 1
+local numberOfTasks = 3
+local theme = 1
 
-		local requestUrl =
-			"https://creators.lootlabs.gg/api/public/content_locker"
-			.. "?api_token=" .. self.HttpService:UrlEncode(self.LOOT_API_KEY)
-			.. "&title=" .. self.HttpService:UrlEncode(title)
-			.. "&url=" ..targetUrl
-			.. "&tier_id=" .. tostring(tierId)
-			.. "&number_of_tasks=" .. tostring(1)
-			.. "&theme=" .. tostring(theme)
+local requestUrl =
+"https://creators.lootlabs.gg/api/public/content_locker"
+.. "?api_token=" .. self.HttpService:UrlEncode(self.LOOT_API_KEY)
+.. "&title=" .. self.HttpService:UrlEncode(title)
+.. "&url=" ..targetUrl
+.. "&tier_id=" .. tostring(tierId)
+.. "&number_of_tasks=" .. tostring(1)
+.. "&theme=" .. tostring(theme)
+.. '&puid=' .. 'testest'
 
-		local response = request({
-			Url = requestUrl,
-			Method = "GET"
-		})
+local response = request({
+Url = requestUrl,
+Method = "GET"
+})
 
 
-		if not response.Success then
-			return
-		end
+if not response.Success then
+return
+end
 
-		local data = self.HttpService:JSONDecode(response.Body)
+local data = self.HttpService:JSONDecode(response.Body)
 
-		if data.type == "error" then
-			return
-		end
+if data.type == "error" then
+return
+end
 
-		local lootUrl = data.message[1].loot_url
+local lootUrl = data.message[1].loot_url
 
 
 
-		--print("KEY:", key)
-		--print("Pastebin:", pasteUrl)
-		--print("LOOTLABS:", lootUrl)
+--print("KEY:", key)
+--print("Pastebin:", pasteUrl)
+--print("LOOTLABS:", lootUrl)
+local requestUrl =
+'https://pknvenbnlmraogpnwggn.supabase.co/functions/v1/savelink'
+.. '?&click_id=' .. sessionUID
+local response = request({
+Url = requestUrl,
+Method = "GET"
+})
+if not response.Success then
+return
+end
 
-		setclipboard(lootUrl)
-		text_info.Text = 'link to key copied to clipboard'
+setclipboard(lootUrl..'&puid='..sessionUID)
+text_info.Text = 'link to key copied to clipboard'
 
 
-	end)
+end)
 
-	text_info.Parent = window
-	text_info.Size = UDim2.fromScale(1,0.1)
-	return window
+text_info.Parent = window
+text_info.Size = UDim2.fromScale(1,0.1)
+return window
 
 end
 
 function module:create_option_frame(option_text,number_input)
-	option_text = option_text or ''
+option_text = option_text or ''
 
 
 
-	local optionFrame = Instance.new('Frame')
-	if self.window then
+local optionFrame = Instance.new('Frame')
+if self.window then
 
-		optionFrame.Parent = self.window
-
-	end
-
-
-	optionFrame.BackgroundTransparency = 1
-	optionFrame.Size = UDim2.fromScale(1,0.2)
-	optionFrame.Position = UDim2.fromScale(0,0)
-	local greenBorder = module.border_frame:Clone()
-	greenBorder.Parent = optionFrame
-
-	local option_text = self:create_text(option_text,true)
-	option_text.Parent = optionFrame
-
-
-
-
-	if number_input then
-		number_input = self:create_input_number()
-		number_input.Parent = optionFrame
-
-	end
-
-
-	local opt_db = {enabled = false,option_obj = optionFrame,number_input = number_input}
-	table.insert(self.options,opt_db)
-	local option_index = #self.options
-
-	local toggle_button = self:create_toggle_button(option_index)
-	toggle_button.Parent = optionFrame
-
-	return option_index,optionFrame,toggle_button
+optionFrame.Parent = self.window
 
 end
 
+
+optionFrame.BackgroundTransparency = 1
+optionFrame.Size = UDim2.fromScale(1,0.2)
+optionFrame.Position = UDim2.fromScale(0,0)
+local greenBorder = module.border_frame:Clone()
+greenBorder.Parent = optionFrame
+
+local option_text = self:create_text(option_text,true)
+option_text.Parent = optionFrame
+
+
+
+
+if number_input then
+number_input = self:create_input_number()
+number_input.Parent = optionFrame
+
+end
+
+
+local opt_db = {enabled = false,option_obj = optionFrame,number_input = number_input}
+table.insert(self.options,opt_db)
+local option_index = #self.options
+
+local toggle_button = self:create_toggle_button(option_index)
+toggle_button.Parent = optionFrame
+
+return option_index,optionFrame,toggle_button
+
+end
 
 return module
