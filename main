@@ -468,7 +468,7 @@ local requestUrl =
 .. "&title=" .. self.HttpService:UrlEncode(title)
 .. "&url=" ..targetUrl
 .. "&tier_id=" .. tostring(tierId)
-.. "&number_of_tasks=" .. tostring(1)
+.. "&number_of_tasks=" .. tostring(numberOfTasks)
 .. "&theme=" .. tostring(theme)
 .. '&puid=' .. 'testest'
 
