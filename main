@@ -134,7 +134,7 @@ function module:create_minimalize_button()
 
 local minimalize_button = Instance.new('TextButton')
 minimalize_button.Size = UDim2.fromScale(0.1,1)
-minimalize_button.Position = UDim2.fromScale(0.9,0)
+minimalize_button.Position = UDim2.fromScale(1,0)
 minimalize_button.Text = '-'
 minimalize_button.TextScaled = true
 minimalize_button.BackgroundTransparency = 1
@@ -241,7 +241,7 @@ uiShadow.Parent = topBar
 local topBar_text:TextLabel = self:create_text(topbar_text or '')
 topBar_text.Parent = topBar
 topBar_text.TextSize = 32
-
+topBar_text.TextScaled = true
 local minimalize_button = self:create_minimalize_button()
 minimalize_button.Parent = topBar
 
